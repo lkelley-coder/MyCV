@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lukas Kelley — software engineering student, CompTIA A+ certified, and four-year employee at Crown Lift Trucks.">
+  <title>Lukas Kelley | Software Engineering Student</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #162033;
+      --line: #263449;
+      --text: #e6edf7;
+      --muted: #9aa8bd;
+      --accent: #38bdf8;
+      --accent-2: #a3e635;
+      --sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.65;
+    }
+    a { color: var(--accent); }
+    a:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; border-radius: 3px; }
+    .wrap { width: min(1000px, calc(100% - 40px)); margin-inline: auto; }
+
+    header.top { border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; }
+    .logo { font-family: var(--mono); font-weight: 700; color: var(--text); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav ul { display: flex; gap: 22px; margin: 0; padding: 0; list-style: none; }
+    .nav ul a { color: var(--muted); font-size: .9rem; font-weight: 600; text-decoration: none; }
+    .nav ul a:hover { color: var(--accent); }
+
+    .hero { padding: 84px 0 70px; }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr .6fr; gap: 50px; align-items: center; }
+    .eyebrow { margin: 0 0 12px; color: var(--accent-2); font-family: var(--mono); font-size: .88rem; }
+    h1 { margin: 0 0 14px; font-size: clamp(2.6rem, 6vw, 4.3rem); line-height: 1.05; letter-spacing: -.03em; }
+    h1 span { color: var(--accent); }
+    .tagline { max-width: 560px; margin: 0 0 26px; color: var(--muted); font-size: 1.12rem; }
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      background: var(--accent);
+      color: #06202e;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.ghost { background: transparent; color: var(--accent); }
+    .avatar {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      background: var(--panel);
+    }
+    .avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-10%, 40%) scale(1.8);
+    }
+
+    section { padding: 62px 0; border-top: 1px solid var(--line); scroll-margin-top: 10px; }
+    h2 { margin: 0 0 28px; font-size: 1.7rem; letter-spacing: -.02em; }
+    h2::before { content: "// "; color: var(--accent-2); font-family: var(--mono); font-weight: 400; }
+
+    .about p { max-width: 760px; margin: 0 0 16px; color: #cbd5e4; font-size: 1.05rem; }
+    .interests { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .chip {
+      padding: 6px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--text);
+      font-size: .9rem;
+    }
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .card { padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+    .card h3 { margin: 0 0 10px; font-size: 1.1rem; color: var(--accent); }
+    .card ul { margin: 0; padding-left: 20px; color: #cbd5e4; }
+    .card li { margin-bottom: 4px; }
+
+    .timeline-item { padding: 24px; border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; background: var(--panel); }
+    .timeline-item + .timeline-item { margin-top: 18px; }
+    .timeline-item h3 { margin: 0; font-size: 1.15rem; }
+    .meta { margin: 2px 0 12px; color: var(--muted); font-size: .92rem; }
+    .timeline-item p { margin: 0; color: #cbd5e4; }
+
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .contact-card { display: block; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--text); text-decoration: none; }
+    .contact-card:hover { border-color: var(--accent); }
+    .contact-card small { display: block; color: var(--accent-2); font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+    .contact-card span { word-break: break-word; font-weight: 600; }
+
+    footer { padding: 30px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; text-align: center; }
+
+    @media (max-width: 720px) {
+      .nav { flex-direction: column; padding: 14px 0; gap: 8px; }
+      .nav ul { gap: 16px; }
+      .hero { padding: 54px 0 48px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .avatar { width: 150px; order: -1; }
+      section { padding: 48px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="logo" href="#top">&lt;<span>lukas</span> /&gt;</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Hello, world! I'm</p>
+          <h1>Lukas <span>Kelley</span></h1>
+          <p class="tagline">Software engineering student, CompTIA A+ certified, and a four-year team member at Crown Lift Trucks. I'm turning curiosity for technology into a career in code.</p>
+          <div class="btns">
+            <a class="btn" href="#contact">Get in touch</a>
+            <a class="btn ghost" href="#experience">See my experience</a>
+          </div>
+        </div>
+        <div class="avatar"><img src="profile_pic.jpg" alt="Portrait of Lukas Kelley outdoors at sunset, wearing a cap and a denim jacket"></div>
+      </div>
+    </div>
+
+    <section id="about" class="about">
+      <div class="wrap">
+        <h2>About me</h2>
+        <p>I'm a software engineering student who has spent the last four years balancing work at Crown Lift Trucks with my studies. That mix has taught me discipline, time management, and how to keep learning while delivering in a real workplace.</p>
+        <p>I'm CompTIA A+ certified, which gave me a solid grounding in how hardware, software, and troubleshooting fit together. Right now I'm working toward a software engineering certification, building my skills in coding and web development one project at a time.</p>
+        <p>My goal is to grow into a professional software engineer who builds reliable, useful software. Outside of work and school, you'll find me playing football, gaming, hiking, and, of course, coding.</p>
+        <div class="interests" aria-label="Interests">
+          <span class="chip">⚽ Football</span>
+          <span class="chip">🎮 Gaming</span>
+          <span class="chip">🥾 Hiking</span>
+          <span class="chip">💻 Coding</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <h2>Skills &amp; competencies</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Technical</h3>
+            <ul>
+              <li>Python programming</li>
+              <li>HTML &amp; CSS</li>
+              <li>Git &amp; GitHub</li>
+              <li>GitHub Pages deployment</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>IT foundations</h3>
+            <ul>
+              <li>CompTIA A+ certified</li>
+              <li>Hardware &amp; software troubleshooting</li>
+              <li>Technical problem solving</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Professional</h3>
+            <ul>
+              <li>Time management</li>
+              <li>Teamwork &amp; reliability</li>
+              <li>Balancing work and study</li>
+              <li>Fast, continuous learning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="wrap">
+        <h2>Education</h2>
+        <div class="timeline-item">
+          <h3>Software Engineering Bootcamp</h3>
+          <p class="meta">Arizona State University · In progress</p>
+          <p>Studying software engineering fundamentals, including Python, web development, and deployment workflows, and working toward a software engineering certification.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>CompTIA A+ Certification</h3>
+          <p class="meta">Completed</p>
+          <p>Industry-recognised certification covering hardware, operating systems, networking basics, and troubleshooting.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <h2>Work experience</h2>
+        <div class="timeline-item">
+          <h3>Crown Lift Trucks</h3>
+          <p class="meta">Employee · 4 years</p>
+          <p>Four years of dependable work with the Crown Lift Trucks team while studying at the same time, building strong time management, a good work ethic, and the habit of finishing what I start.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:Lukastkelley97@gmail.com"><small>Email</small><span>Lukastkelley97@gmail.com</span></a>
+          <a class="contact-card" href="tel:+19379017304"><small>Phone</small><span>937-901-7304</span></a>
+          <a class="contact-card" href="https://github.com/lkelley-coder" target="_blank" rel="noopener"><small>GitHub</small><span>github.com/lkelley-coder</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Lukas Kelley</footer>
+</body>
+</html>
